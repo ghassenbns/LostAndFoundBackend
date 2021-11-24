@@ -10,23 +10,28 @@
   $database = new Database();
   $db = $database->connect();
 
-  // Instantiate blog post object
+  // Instantiate user object
   $user = new Post($db);
+  // Get raw posted data
+  $data = json_decode(file_get_contents("php://input"));
 
   // Get ID
-  $user->id = isset($_GET['id']) ? $_GET['id'] : die();
+  $user->email = $data->email;
+    $user->password = $data->password;
 
-  // Get post
+
+  // Get user
   $user->login();
 
   // Create array
   $user_arr = array(
-    'id' => $user->id,
+    'username' => $user->username,
     'email' => $user->email,
     'password' => $user->password,
-    'username' => $user->username,
-   
+        'id' => $user->id,
+
+    
   );
 
   // Make JSON
-  print_r(json_encode($post_arr));
+  print_r(json_encode($user_arr));

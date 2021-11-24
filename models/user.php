@@ -87,25 +87,31 @@
 
 
         public function login() {
+          
           // Create query
-          $query = 'SELECT email, password, id, username FROM users WHERE (email = :email AND password = :password)';
+           $query = 'SELECT * FROM users WHERE (email = :email AND password = :password)';
 
           // Prepare statement
           $stmt = $this->conn->prepare($query);
 
-          // Bind ID
-          $stmt->bindParam(2, $this->email,$this->password);
-
+          // Bind Params
+          $stmt->bindParam(':email', $this->email);
+          $stmt->bindParam(':password',$this->password);
           // Execute query
           $stmt->execute();
-
+          
           $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
+          if ($row['id']!= null ){
           // Set properties
           $this->email = $row['email'];
-          $this->id = $row['id'];
-          $this->username = $row['username'];
           $this->password = $row['password'];
+          $this->id = $row['id'];
+          $this->username = $row['username'];}
+          else{
+            http_response_code(404);
+
+          }
+        
     }
 
 
