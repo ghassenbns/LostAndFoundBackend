@@ -13,19 +13,19 @@
   $db = $database->connect();
 
   // Instantiate blog post object
-  $post = new Post ($db);
+  $user = new Post ($db);
 
   // Get raw posted data
   $data = json_decode(file_get_contents("php://input"));
 
-  $post->username = $data->username;
-  $post->email = $data->email;
-  $post->password = $data->password;
+  $user->username = $data->username;
+  $user->email = $data->email;
+  $user->password = $data->password;
   
 
 
   // Create post
-  if($post->create()) {
+  if($user->create()) {
     echo json_encode(
       array('message' => 'User Created')
     );
