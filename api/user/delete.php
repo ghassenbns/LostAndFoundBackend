@@ -13,7 +13,7 @@
   $db = $database->connect();
 
   // Instantiate  user object
-  $user = new Post($db);
+  $user = new User($db);
 
   // Get raw posted data
   $data = json_decode(file_get_contents("php://input"));

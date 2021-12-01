@@ -1,10 +1,9 @@
 <?php 
-  class Post {
+  class User {
     // DB stuff
     private $conn;
-    private $table = 'post';
 
-    // Post Properties
+    // User Properties
     public $username;
     public $email;
     public $password;
@@ -15,7 +14,7 @@
       $this->conn = $db;
     }
 
-    // Get Posts
+    // Get users
     public function read() {
       // Create query
       $query = 'SELECT * FROM users';
@@ -29,7 +28,7 @@
       return $stmt;
     }
 
-    // Create Post
+    // Create user
     public function create() {
           // Create query
           $query = 'INSERT INTO users SET username = :username, email = :email, password = :password' ;
@@ -60,7 +59,7 @@
       return false;
     }
 
-    // Delete Post
+    // Delete user
     public function delete() {
           // Create query
           $query = 'DELETE FROM users WHERE id = :id';

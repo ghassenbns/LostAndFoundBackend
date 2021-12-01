@@ -1,10 +1,19 @@
 <?php 
   // Headers
-  header('Access-Control-Allow-Origin: *');
-  header('Content-Type: application/json');
-  header('Access-Control-Allow-Methods: POST');
-  header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods, typeization, X-Requested-With');
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Methods: POST, GET, DELETE, PUT, PATCH, OPTIONS');
+        header('Access-Control-Allow-Headers: token, Content-Type');
+        header('Access-Control-Max-Age: 1728000');
+        header('Content-Length: 0');
+        header('Content-Type: application/json');
+        die();
+    }
 
+    header('Access-Control-Allow-Origin: *');
+    header('Content-Type: application/json');
+
+    
   include_once '../../config/db.php';
   include_once '../../models/user.php';
 
@@ -12,10 +21,10 @@
   $database = new Database();
   $db = $database->connect();
 
-  // Instantiate blog post object
-  $user = new Post ($db);
+  // Instantiate blog user object
+  $user = new User ($db);
 
-  // Get raw posted data
+  // Get raw user data
   $data = json_decode(file_get_contents("php://input"));
 
   $user->username = $data->username;
