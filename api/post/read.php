@@ -35,6 +35,7 @@
         'location' => $location,
         'date' => $date,
         'imagePath' => $imagePath,
+        'id_user'=> $id_user,
 
 
       );

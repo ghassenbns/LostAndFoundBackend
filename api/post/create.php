@@ -22,8 +22,10 @@
   $post->description = $data->description;
   $post->type = $data->type;
   $post->location = $data->location;
-    $post->imagePath = $data->imagePath;
+  $post->imagePath = $data->imagePath;
   $post->date = $data->date;
+  $post->id_user = $data->id_user;
+
 
 
   // Create post
