@@ -36,29 +36,33 @@
   $result = $user->login();
   $num = $result->rowCount();
  if($num > 0) {
-       $user_arr = array();
+       $posts_arr = array();
  while($row = $result->fetch(PDO::FETCH_ASSOC)) {
       extract($row);
   // Create array
-  $user_item = array(
-    'username' => $username,
-    'email' => $email,
-    'password' =>$password,
-    'id' => $id,
+  $post_item = array(
     'type' => $type,
     'id_post' => $id_post,
     'title' => $title,
     'location' => $location,
     'imagePath' => $imagePath,
     'date' => $date,
-    'description' => $description,
-    );
-    array_push($user_arr, $user_item);
+    'description' => $description 
+  );
+    array_push($posts_arr, $post_item);
+
     }  
-        
+
+    $user_obj = array(
+    'username' => $username,
+    'email' => $email,
+    'password' =>$password,
+    'id' => $id,
+    'posts'=>$posts_arr
+  );
     
               // Turn to JSON & output
-    echo json_encode($user_arr);
+    echo json_encode($user_obj);
   }
   else{
       http_response_code(404);
