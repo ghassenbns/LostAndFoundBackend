@@ -88,7 +88,7 @@
         public function login() {
           
           // Create query
-           $query = 'SELECT * FROM users WHERE (email = :email AND password = :password)';
+           $query = 'SELECT users.id, users.username, users.password, users.email,posts.type,posts.id AS id_post,posts.title,posts.location,posts.imagePath,posts.date,posts.description FROM users LEFT JOIN posts ON posts.id_user= users.id WHERE (`email` LIKE :email AND `password` LIKE :password)';
 
           // Prepare statement
           $stmt = $this->conn->prepare($query);
@@ -105,7 +105,16 @@
           $this->email = $row['email'];
           $this->password = $row['password'];
           $this->id = $row['id'];
-          $this->username = $row['username'];}
+          $this->username = $row['username'];
+        $this->type = $row['type'];
+          $this->id_post = $row['id_post'];
+          $this->title = $row['title'];
+          $this->location = $row['location'];
+          $this->imagePath = $row['imagePath'];
+          $this->date = $row['date'];
+          $this->description = $row['description'];
+          }        
+        
           else{
             http_response_code(404);
 

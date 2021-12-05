@@ -40,10 +40,15 @@
     'username' => $user->username,
     'email' => $user->email,
     'password' => $user->password,
-        'id' => $user->id,
-
-    
-  );
+    'id' => $user->id,
+    'type' => $user->type,
+    'id_post' => $user->id_post,
+    'title' => $user->title,
+    'location' => $user->location,
+    'imagePath' => $user->imagePath,
+    'date' => $user->date,
+    'description' => $user->description,
+    );
 
   // Make JSON
   print_r(json_encode($user_arr));
