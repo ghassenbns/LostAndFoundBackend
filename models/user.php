@@ -99,26 +99,10 @@
           // Execute query
           $stmt->execute();
           
-          $row = $stmt->fetch(PDO::FETCH_ASSOC);
-          if ($row['id']!= null ){
-          // Set properties
-          $this->email = $row['email'];
-          $this->password = $row['password'];
-          $this->id = $row['id'];
-          $this->username = $row['username'];
-        $this->type = $row['type'];
-          $this->id_post = $row['id_post'];
-          $this->title = $row['title'];
-          $this->location = $row['location'];
-          $this->imagePath = $row['imagePath'];
-          $this->date = $row['date'];
-          $this->description = $row['description'];
-          }        
-        
-          else{
-            http_response_code(404);
+         
+          return $stmt;
 
-          }
+        
         
     }
 
