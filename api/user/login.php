@@ -39,6 +39,7 @@
        $posts_arr = array();
  while($row = $result->fetch(PDO::FETCH_ASSOC)) {
       extract($row);
+      if($row['id_post']> 0){
   // Create array
   $post_item = array(
     'type' => $type,
@@ -52,7 +53,7 @@
     array_push($posts_arr, $post_item);
 
     }  
-
+  }
     $user_obj = array(
     'username' => $username,
     'email' => $email,
@@ -66,5 +67,5 @@
   }
   else{
       http_response_code(404);
-          }
+}
   
