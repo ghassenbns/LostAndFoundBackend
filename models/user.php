@@ -88,7 +88,7 @@
         public function login() {
           
           // Create query
-           $query = 'SELECT users.id, users.username, users.password, users.email,posts.type,posts.id AS id_post,posts.title,posts.location,posts.imagePath,posts.date,posts.description FROM users LEFT JOIN posts ON posts.id_user= users.id WHERE (`email` LIKE :email AND `password` LIKE :password)';
+           $query = 'SELECT users.id, users.username, users.password, users.email,posts.type,posts.id AS idPost,posts.title,posts.location,posts.imagePath,posts.date,posts.description FROM users LEFT JOIN posts ON posts.id_user= users.id WHERE (`email` LIKE :email AND `password` LIKE :password)';
 
           // Prepare statement
           $stmt = $this->conn->prepare($query);

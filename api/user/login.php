@@ -39,11 +39,11 @@
        $posts_arr = array();
  while($row = $result->fetch(PDO::FETCH_ASSOC)) {
       extract($row);
-      if($row['id_post']> 0){
+      if($row['idPost']> 0){
   // Create array
   $post_item = array(
     'type' => $type,
-    'id_post' => $id_post,
+    'idPost' => $idPost,
     'title' => $title,
     'location' => $location,
     'imagePath' => $imagePath,
