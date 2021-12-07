@@ -1,10 +1,10 @@
 <?php
 class Database {
     //DB params
-    private $host = 'bn4mk3airl4qaeevh9is-mysql.services.clever-cloud.com';
-    private $db_name ='bn4mk3airl4qaeevh9is';
-    private $username ='u7pabhpjs7lnhwdz';
-    private $password ='BCXrHu4MqhkTwX7xAoAq';
+    private $host = 'localhost';
+    private $db_name ='lostandfound';
+    private $username ='root';
+    private $password ='';
     private $conn;
     //DB connect
     public function connect() {
