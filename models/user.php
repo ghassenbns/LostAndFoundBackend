@@ -7,7 +7,8 @@
     public $username;
     public $email;
     public $password;
-    
+    public $phoneNumber;
+
 
     // Constructor with DB
     public function __construct($db) {
@@ -31,7 +32,7 @@
     // Create user
     public function create() {
           // Create query
-          $query = 'INSERT INTO users SET username = :username, email = :email, password = :password' ;
+          $query = 'INSERT INTO users SET username = :username, email = :email, password = :password, phoneNumber= :phoneNumber' ;
 
           // Prepare statement
           $stmt = $this->conn->prepare($query);
@@ -40,14 +41,15 @@
           $this->password = htmlspecialchars(strip_tags($this->password));
           $this->username = htmlspecialchars(strip_tags($this->username));
           $this->email = htmlspecialchars(strip_tags($this->email));
-          
+                    $this->phoneNumber = htmlspecialchars(strip_tags($this->phoneNumber));
+
 
 
           // Bind data
           $stmt-> bindParam(':username', $this->username);
           $stmt-> bindParam(':email', $this->email);
           $stmt-> bindParam(':password', $this->password);
-         
+         $stmt-> bindParam(':phoneNumber', $this->phoneNumber);
           // Execute query
           if($stmt->execute()) {
             return true;
@@ -88,7 +90,7 @@
         public function login() {
           
           // Create query
-           $query = 'SELECT users.id, users.username, users.password, users.email,posts.type,posts.id AS idPost,posts.title,posts.location,posts.imagePath,posts.date,posts.description FROM users LEFT JOIN posts ON posts.id_user= users.id WHERE (`email` LIKE :email AND `password` LIKE :password)';
+           $query = 'SELECT users.id, users.username, users.password, users.email, users.phoneNumber,posts.type,posts.id AS idPost,posts.title,posts.location,posts.imagePath,posts.date,posts.description FROM users LEFT JOIN posts ON posts.id_user= users.id WHERE (`email` LIKE :email AND `password` LIKE :password)';
 
           // Prepare statement
           $stmt = $this->conn->prepare($query);

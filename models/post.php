@@ -12,6 +12,7 @@
     public $location;
     public $description;
     public $id_user;
+    public $phoneNumber;
 
     // Constructor with DB
     public function __construct($db) {
@@ -35,7 +36,7 @@
     // Create Post
     public function create() {
           // Create query
-          $query = 'INSERT INTO posts SET title = :title, type = :type, description = :description, location = :location, date = :date, imagePath = :imagePath, id_user = :id_user';
+          $query = 'INSERT INTO posts SET title = :title, type = :type, description = :description, location = :location, date = :date, imagePath = :imagePath, id_user = :id_user, phoneNumber= :phoneNumber';
 
           // Prepare statement
           $stmt = $this->conn->prepare($query);
@@ -48,6 +49,7 @@
           $this->date = htmlspecialchars(strip_tags($this->date));
           $this->imagePath = htmlspecialchars(strip_tags($this->imagePath));
           $this->id_user = htmlspecialchars(strip_tags($this->id_user));
+          $this->phoneNumber = htmlspecialchars(strip_tags($this->phoneNumber));
 
 
           // Bind data
@@ -58,6 +60,8 @@
           $stmt->bindParam(':date', $this->date);
           $stmt->bindParam(':imagePath', $this->imagePath);
           $stmt->bindParam(':id_user', $this->id_user);
+                    $stmt->bindParam(':phoneNumber', $this->phoneNumber);
+
           // Execute query
           if($stmt->execute()) {
             return true;

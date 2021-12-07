@@ -33,6 +33,7 @@
   $post->imagePath = $data->imagePath;
   $post->date = $data->date;
   $post->id_user = $data->id_user;
+  $post->phoneNumber = $data->phoneNumber;
 
 
 

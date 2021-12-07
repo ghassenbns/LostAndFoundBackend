@@ -59,6 +59,7 @@
     'email' => $email,
     'password' =>$password,
     'id' => $id,
+    'phoneNumber'=> $phoneNumber,
     'posts'=>$posts_arr
   );
     
