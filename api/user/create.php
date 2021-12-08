@@ -30,8 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
   $user->username = $data->username;
   $user->email = $data->email;
   $user->password = $data->password;
-    $user->phoneNumber = $data->phoneNumber;
-
+  $user->phoneNumber = $data->phoneNumber;
+  $user->location = $data->location;
 
 
   // Create post

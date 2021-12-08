@@ -60,6 +60,8 @@
     'password' =>$password,
     'id' => $id,
     'phoneNumber'=> $phoneNumber,
+        'location'=> $location,
+
     'posts'=>$posts_arr
   );
     

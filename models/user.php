@@ -8,6 +8,7 @@
     public $email;
     public $password;
     public $phoneNumber;
+    public $location;
 
 
     // Constructor with DB
@@ -41,7 +42,8 @@
           $this->password = htmlspecialchars(strip_tags($this->password));
           $this->username = htmlspecialchars(strip_tags($this->username));
           $this->email = htmlspecialchars(strip_tags($this->email));
-                    $this->phoneNumber = htmlspecialchars(strip_tags($this->phoneNumber));
+          $this->phoneNumber = htmlspecialchars(strip_tags($this->phoneNumber));
+          $this->location = htmlspecialchars(strip_tags($this->location));
 
 
 
@@ -50,6 +52,8 @@
           $stmt-> bindParam(':email', $this->email);
           $stmt-> bindParam(':password', $this->password);
          $stmt-> bindParam(':phoneNumber', $this->phoneNumber);
+        $stmt-> bindParam(':phoneNumber', $this->location);
+
           // Execute query
           if($stmt->execute()) {
             return true;
