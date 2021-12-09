@@ -33,7 +33,7 @@
     // Create user
     public function create() {
           // Create query
-          $query = 'INSERT INTO users SET username = :username, email = :email, password = :password, phoneNumber= :phoneNumber' ;
+          $query = 'INSERT INTO users SET username = :username, email = :email, password = :password, phoneNumber= :phoneNumber, location= :location' ;
 
           // Prepare statement
           $stmt = $this->conn->prepare($query);
@@ -52,7 +52,7 @@
           $stmt-> bindParam(':email', $this->email);
           $stmt-> bindParam(':password', $this->password);
          $stmt-> bindParam(':phoneNumber', $this->phoneNumber);
-        $stmt-> bindParam(':phoneNumber', $this->location);
+        $stmt-> bindParam(':location', $this->location);
 
           // Execute query
           if($stmt->execute()) {
@@ -91,10 +91,10 @@
     }
 
 
-        public function login() {
+     public function login() {
           
           // Create query
-           $query = 'SELECT users.id, users.username, users.password, users.email, users.phoneNumber,posts.type,posts.id AS idPost,posts.title,posts.location,posts.imagePath,posts.date,posts.description FROM users LEFT JOIN posts ON posts.id_user= users.id WHERE (`email` LIKE :email AND `password` LIKE :password)';
+           $query = 'SELECT * FROM users WHERE (email = :email AND password = :password)';
 
           // Prepare statement
           $stmt = $this->conn->prepare($query);
@@ -105,13 +105,19 @@
           // Execute query
           $stmt->execute();
           
-         
-          return $stmt;
+          $row = $stmt->fetch(PDO::FETCH_ASSOC);
+          if ($row['id']!= null ){
+          // Set properties
+          $this->email = $row['email'];
+          $this->password = $row['password'];
+          $this->id = $row['id'];
+          $this->username = $row['username'];
+          $this->phoneNumber = $row['phoneNumber'];
+          $this->location = $row['location'];}
+          else{
+            http_response_code(404);
+          }
 
-        
-        
-    }
-
-
+        }
     
   }

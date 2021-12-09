@@ -28,47 +28,24 @@
   $data = json_decode(file_get_contents("php://input"));
 
   // Get ID
-    $user->email = $data->email;
+  $user->email = $data->email;
     $user->password = $data->password;
 
 
   // Get user
-  $result = $user->login();
-  $num = $result->rowCount();
- if($num > 0) {
-       $posts_arr = array();
- while($row = $result->fetch(PDO::FETCH_ASSOC)) {
-      extract($row);
-      if($row['idPost']> 0){
+  $user->login();
+
   // Create array
-  $post_item = array(
-    'type' => $type,
-    'idPost' => $idPost,
-    'title' => $title,
-    'location' => $location,
-    'imagePath' => $imagePath,
-    'date' => $date,
-    'description' => $description 
-  );
-    array_push($posts_arr, $post_item);
+  $user_arr = array(
+    'username' => $user->username,
+    'email' => $user->email,
+    'password' => $user->password,
+    'id' => $user->id,
+    'phoneNumber'=>$user->phoneNumber,
+    'location'=> $user->location
 
-    }  
-  }
-    $user_obj = array(
-    'username' => $username,
-    'email' => $email,
-    'password' =>$password,
-    'id' => $id,
-    'phoneNumber'=> $phoneNumber,
-        'location'=> $location,
-
-    'posts'=>$posts_arr
-  );
     
-              // Turn to JSON & output
-    echo json_encode($user_obj);
-  }
-  else{
-      http_response_code(404);
-}
-  
+  );
+
+  // Make JSON
+  print_r(json_encode($user_arr));
