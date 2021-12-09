@@ -36,7 +36,8 @@
         'date' => $date,
         'imagePath' => $imagePath,
         'id_user'=> $id_user,
-        'phoneNumber'=> $phoneNumber
+        'phoneNumber'=> $phoneNumber,
+        'idPost'=> $id
 
 
       );
